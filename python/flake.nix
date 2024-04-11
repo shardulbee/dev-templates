@@ -1,11 +1,10 @@
 {
   description = "A Nix-flake-based Python development environment";
-
   inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
 
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "aarch64-darwin" ];
+      supportedSystems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import nixpkgs { inherit system; };
       });
@@ -20,7 +19,6 @@
               pkgs.imagemagick
               pkgs.python311Packages.python-lsp-server
               pkgs.python311Packages.python-lsp-ruff
-
           ];
           venvDir = ".venv";
           postVenvCreation = ''
