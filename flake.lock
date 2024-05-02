@@ -1,6 +1,40 @@
 {
   "nodes": {
+    "default-dev-templates": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1714148568,
+        "narHash": "sha256-CqXnXPaPyJpm6WungQTsQQbUN4NddzeNq3p3vBTujCE=",
+        "owner": "the-nix-way",
+        "repo": "dev-templates",
+        "rev": "615e7e81f223b14c6b2552cb84c64413fc5737e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "the-nix-way",
+        "repo": "dev-templates",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1706683685,
+        "narHash": "sha256-FtPPshEpxH/ewBOsdKBNhlsL2MLEFv1hEnQ19f/bFsQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5ad9903c16126a7d949101687af0aa589b1d7d3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1712757991,
         "narHash": "sha256-kR7C7Fqt3JP40h0mzmSZeWI5pk1iwqj4CSeGjnUbVHc=",
@@ -18,7 +52,8 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "default-dev-templates": "default-dev-templates",
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
