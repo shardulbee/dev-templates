@@ -1,0 +1,14 @@
+einops
+tqdm
+ipykernel
+notebook
+ipywidgets
+jupyterlab-widgets
+jupyter
+matplotlib
+pandas
+scikit-learn
+wandb
+plotly
+jaxtyping
+transformer_lens

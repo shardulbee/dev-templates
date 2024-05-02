@@ -1,10 +1,10 @@
 {
   description = "A Nix-flake-based Python development environment";
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import nixpkgs { inherit system; };
       });
@@ -12,21 +12,16 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          name = "impurePythonEnv";
-          buildInputs = [
-              pkgs.python311
-              pkgs.python311Packages.venvShellHook
-              pkgs.imagemagick
-              pkgs.python311Packages.python-lsp-server
-              pkgs.python311Packages.python-lsp-ruff
-          ];
           venvDir = ".venv";
           postVenvCreation = ''
           unset SOURCE_DATE_EPOCH
+          pip install -r requirements.txt
           '';
-          shellHook = ''
-            unset SOURCE_DATE_EPOCH
-          '';
+          packages = with pkgs; [ python311 ] ++
+            (with pkgs.python311Packages; [
+              pip
+              venvShellHook
+            ]);
         };
       });
     };
